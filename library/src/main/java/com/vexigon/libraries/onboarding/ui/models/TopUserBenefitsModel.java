@@ -50,6 +50,7 @@ public class TopUserBenefitsModel {
      * @param titleText an array of Strings for each slide.
      * @return TopUserBenefitsModel
      */
+    @Deprecated
     public TopUserBenefitsModel setTitleText(String[] titleText) {
         this.titleText = titleText;
         return this;
@@ -60,6 +61,7 @@ public class TopUserBenefitsModel {
      * @param subtitleText an array of Strings for each slide.
      * @return TopUserBenefitsModel
      */
+    @Deprecated
     public TopUserBenefitsModel setSubtitles(String[] subtitleText) {
         this.subtitleText = subtitleText;
         return this;
@@ -70,6 +72,7 @@ public class TopUserBenefitsModel {
      * @param buttonText an array of Strings for each slide.
      * @return TopUserBenefitsModel
      */
+    @Deprecated
     public TopUserBenefitsModel setButtonText(String[] buttonText) {
         this.buttonText = buttonText;
         return this;
@@ -80,6 +83,7 @@ public class TopUserBenefitsModel {
      * @param illustrationRes an array of image resources for each slide.
      * @return TopUserBenefitsModel
      */
+    @Deprecated
     public TopUserBenefitsModel setIllustrations(int[] illustrationRes) {
         this.illustrationRes = illustrationRes;
         return this;
