@@ -1,5 +1,7 @@
 #Material-Onboarding [![](https://jitpack.io/v/Vexigon/Material-Onboarding.svg)](https://jitpack.io/#Vexigon/Material-Onboarding)
 
+![Sample image](https://github.com/Vexigon/Material-Onboarding/raw/master/art/onboarding_sample.png)
+
 A short and simple library which allows easy replication of several app onboarding techniqies found [here](https://material.io/guidelines/growth-communications/onboarding.html).
 
 ##Background
