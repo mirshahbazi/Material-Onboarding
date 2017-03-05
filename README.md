@@ -133,7 +133,7 @@ This method launches the activity. No parameters are required.
 
 ##Sample App
 
-Review the sample app code [here](), and download the APK [here]().
+Review the sample app code [here](https://github.com/Andrew-Quebe/Material-Onboarding/tree/master/sample), and download the APK [here]().
 
 ##License
 

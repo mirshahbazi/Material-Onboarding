@@ -16,6 +16,7 @@ package com.vexigon.libraries.onboarding.ui.fragments;
  * limitations under the License.
  */
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -48,6 +49,7 @@ public class BenefitsFragment extends Fragment implements FragmentInterface {
     public BenefitsFragment() {
     }
 
+    @SuppressLint("ValidFragment")
     public BenefitsFragment(int position) {
         this.position = position;
     }
