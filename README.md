@@ -16,7 +16,7 @@ First off, add the Gradle dependency to your app modules `build.gradle` file:
 
 `// TODO: add compile statement`
 
-Next, add a manifest activity declaration, and set its theme. <b>NOTE: Make sure your theme's parent is `Sometheme.NoActionBar` otherwise your onboarding activity will have a toolbar.
+Next, add a manifest activity declaration, and set its theme. <b>NOTE: Make sure your theme's parent is `Sometheme.NoActionBar` otherwise your onboarding activity will have a toolbar.</b>
 
 ```xml
 <activity
