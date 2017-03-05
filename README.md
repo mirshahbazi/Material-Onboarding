@@ -1,4 +1,4 @@
-#Material-Onboarding
+#Material-Onboarding [![](https://jitpack.io/v/Vexigon/Material-Onboarding.svg)](https://jitpack.io/#Vexigon/Material-Onboarding)
 
 A short and simple library which allows easy replication of several app onboarding techniqies found [here](https://material.io/guidelines/growth-communications/onboarding.html).
 
@@ -12,9 +12,24 @@ For now, this library only allows the creation of the [TopUserBenefitsModel](htt
  
 ##Enough Talking. How do I use this?
 
-First off, add the Gradle dependency to your app modules `build.gradle` file:
+First off, add the Gradle dependency to your app:
 
-`// TODO: add compile statement`
+```groovy
+// Add this in your root build.gradle file
+allprojects {
+    repositories {
+        // ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+```groovy
+dependencies {
+    // ...
+    compile 'com.github.Vexigon:Material-Onboarding:v1.0'
+}
+```
 
 Next, add a manifest activity declaration, and set its theme. <b>NOTE: Make sure your theme's parent is `Sometheme.NoActionBar` otherwise your onboarding activity will have a toolbar.</b>
 
