@@ -16,11 +16,12 @@ package com.vexigon.libraries.onboarding.sample;
  * limitations under the License.
  */
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.vexigon.libraries.onboarding.obj.Page;
 import com.vexigon.libraries.onboarding.sampleapp.R;
 import com.vexigon.libraries.onboarding.ui.models.TopUserBenefitsModel;
 
@@ -37,26 +38,11 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         switch (v.getId()) {
             case R.id.demo:
                 new TopUserBenefitsModel(this)
-                        .setTitleText(new String[]{
-                                "Title 1",
-                                "Title 2",
-                                "Title 3"
-                        })
-                        .setSubtitles(new String[]{
-                                "Subtitle 1",
-                                "Subtitle 2",
-                                "Subtitle 3"
-                        })
-                        .setIllustrations(new int[]{
-                                R.mipmap.ic_launcher,
-                                R.mipmap.ic_launcher,
-                                R.mipmap.ic_launcher
-                        })
-                        .setButtonText(new String[]{
-                                "Button 1",
-                                "Button 2",
-                                "Button 3"
-                        })
+                        .setupSlides(
+                                new Page("Title 1", "Subtitle 1", R.mipmap.ic_launcher),
+                                new Page("Title 2", "Subtitle 2", R.mipmap.ic_launcher),
+                                new Page("Title 3", "Subtitle 3", "Custom Button Text", R.mipmap.ic_launcher)
+                        )
                         .launch();
                 break;
         }
