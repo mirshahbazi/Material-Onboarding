@@ -8,7 +8,7 @@ A short and simple library which allows easy replication of several app onboardi
 
 The Material Design guidelines list a lot of different techniques for onboarding users in your apps. The main concept is to remain as simple as possible, and do away with complicated introductions to your app.
 
-##What's Included
+##*What's Included
 
 For now, this library only allows the creation of the [TopUserBenefitsModel](https://material.io/guidelines/growth-communications/onboarding.html#onboarding-top-user-benefits) technique. Later on, it will make use of the other techniques as well.
  
