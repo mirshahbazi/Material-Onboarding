@@ -31,6 +31,7 @@ allprojects {
 ```
 
 ```groovy
+// And add this to your module build.gradle file
 dependencies {
     // ...
     compile 'com.github.Vexigon:Material-Onboarding:v1.0'
