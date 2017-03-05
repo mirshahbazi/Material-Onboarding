@@ -21,8 +21,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 
+import com.vexigon.libraries.onboarding.obj.Page;
 import com.vexigon.libraries.onboarding.ui.activity.UserBenefitsActivity;
 import com.vexigon.libraries.onboarding.util.Keys;
+
+import java.util.ArrayList;
 
 /**
  * Created by Andrew Quebe on 3/2/2017.
@@ -33,6 +36,8 @@ public class TopUserBenefitsModel {
     private String[] titleText, subtitleText, buttonText;
     private int[] illustrationRes;
     private Context context;
+
+    private ArrayList<Page> pages = new ArrayList<>();
 
     private String[] backgroundColorRes;
 
@@ -49,6 +54,7 @@ public class TopUserBenefitsModel {
      * Sets the title text for the TopUserBenefitsModel
      * @param titleText an array of Strings for each slide.
      * @return TopUserBenefitsModel
+     * @deprecated use {@link #setupPages(Page, Page, Page)} instead
      */
     @Deprecated
     public TopUserBenefitsModel setTitleText(String[] titleText) {
@@ -60,6 +66,7 @@ public class TopUserBenefitsModel {
      * Sets the subtitle text for the TopUserBenefitsModel
      * @param subtitleText an array of Strings for each slide.
      * @return TopUserBenefitsModel
+     * @deprecated use {@link #setupPages(Page, Page, Page)} instead
      */
     @Deprecated
     public TopUserBenefitsModel setSubtitles(String[] subtitleText) {
@@ -71,6 +78,7 @@ public class TopUserBenefitsModel {
      * Sets the button text for the TopUserBenfitsModel
      * @param buttonText an array of Strings for each slide.
      * @return TopUserBenefitsModel
+     * @deprecated use {@link #setupPages(Page, Page, Page)} instead
      */
     @Deprecated
     public TopUserBenefitsModel setButtonText(String[] buttonText) {
@@ -82,10 +90,18 @@ public class TopUserBenefitsModel {
      * Sets the illustrations for the TopUserBenefitsModel
      * @param illustrationRes an array of image resources for each slide.
      * @return TopUserBenefitsModel
+     * @deprecated use {@link #setupPages(Page, Page, Page)} instead
      */
     @Deprecated
     public TopUserBenefitsModel setIllustrations(int[] illustrationRes) {
         this.illustrationRes = illustrationRes;
+        return this;
+    }
+
+    public TopUserBenefitsModel setupPages(Page page1, Page page2, Page page3) {
+        this.pages.add(0, page1);
+        this.pages.add(1, page2);
+        this.pages.add(2, page3);
         return this;
     }
 
