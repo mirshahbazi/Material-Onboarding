@@ -10,7 +10,7 @@ The Material Design guidelines list a lot of different techniques for onboarding
 
 ##What's Included
 
-For now, this library only allows the creation of the [TopUserBenefitsModel](https://material.io/guidelines/growth-communications/onboarding.html#onboarding-quickstart) technique. Later on, it will make use of the other techniques as well.
+For now, this library only allows the creation of the [TopUserBenefitsModel](https://material.io/guidelines/growth-communications/onboarding.html#onboarding-top-user-benefits) technique. Later on, it will make use of the other techniques as well.
  
 ##Enough Talking. How do I use this?
 
