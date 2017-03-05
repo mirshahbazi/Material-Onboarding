@@ -163,7 +163,7 @@ Thank you!
 
 ##License
 
-See [LICENSE.md]()
+See [LICENSE.md](https://github.com/Vexigon/Material-Onboarding/blob/master/LICENSE.md)
 
 ##Developed By
 
