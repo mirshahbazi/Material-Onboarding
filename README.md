@@ -110,7 +110,7 @@ This method launches the activity. No parameters are required.
 
 ##Sample App
 
-Review the sample app code [here](https://github.com/Andrew-Quebe/Material-Onboarding/tree/master/sample), and download the APK [here](https://github.com/Andrew-Quebe/Material-Onboarding/blob/master/apks/samplev1.apk?raw=true).
+Review the sample app code [here](https://github.com/Andrew-Quebe/Material-Onboarding/tree/master/sample), and download the APK [here](https://github.com/Vexigon/Material-Onboarding/tree/master/apks).
 
 ##Thanks
 
