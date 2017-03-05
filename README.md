@@ -152,6 +152,15 @@ This method launches the activity. No parameters are required.
 
 Review the sample app code [here](https://github.com/Andrew-Quebe/Material-Onboarding/tree/master/sample), and download the APK [here](https://github.com/Andrew-Quebe/Material-Onboarding/blob/master/apks/samplev1.apk?raw=true).
 
+##Thanks
+
+This library makes use of some other libraries made by some awesome developers around the Github community.
+
+* [InkPagerIndicator](https://github.com/DavidPacioianu/InkPageIndicator) by David Pacioianu ([@DavidPacioianu](https://github.com/DavidPacioianu))
+* [Glide](https://github.com/bumptech/glide) by Sam Judd ([@sjudd](https://github.com/sjudd))
+
+Thank you!
+
 ##License
 
 See [LICENSE.md]()
