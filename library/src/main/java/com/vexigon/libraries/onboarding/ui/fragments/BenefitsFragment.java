@@ -86,7 +86,7 @@ public class BenefitsFragment extends Fragment implements FragmentInterface {
             @Override
             public void onClick(View v) {
                 /*
-                 * Display a “Get Started” button throughout the animation, and loop through the animation continuously until the “Get Started” action is tapped.
+                 * Display a 'Get Started' button throughout the animation, and loop through the animation continuously until the 'Get Started' action is tapped.
                  * https://material.io/guidelines/growth-communications/onboarding.html#onboarding-top-user-benefits
                  */
                 getActivity().finish();
