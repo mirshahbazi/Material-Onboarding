@@ -34,7 +34,7 @@ allprojects {
 // And add this to your module build.gradle file
 dependencies {
     // ...
-    compile 'com.github.Vexigon:Material-Onboarding:v1.0'
+    compile 'com.github.Vexigon:Material-Onboarding:v1.1'
 }
 ```
 
@@ -50,26 +50,11 @@ And now, the fun part! Create a new TopUserBenefitsModel instance like this:
 
 ```java
 new TopUserBenefitsModel(this)
-    .setTitleText(new String[]{
-            "Title 1",
-            "Title 2",
-            "Title 3"
-    })
-    .setSubtitles(new String[]{
-            "Subtitle 1",
-            "Subtitle 2",
-            "Subtitle 3"
-    })
-    .setIllustrations(new int[]{
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher
-    })
-    .setButtonText(new String[]{
-            "Button 1",
-            "Button 2",
-            "Button 3"
-    })
+    .setupSlides(
+            new Page("Title 1", "Subtitle 1", R.mipmap.ic_launcher),
+            new Page("Title 2", "Subtitle 2", R.mipmap.ic_launcher),
+            new Page("Title 3", "Subtitle 3", "Custom Button Text", R.mipmap.ic_launcher)
+    )
     .launch();
 ```
 
@@ -94,59 +79,29 @@ public void onClick(View v) {
 }
 ```
 
-###setTitleText()
+###setupSlides()
 
 This method takes a String array of titles for each slide. The items in the array correspond to the title on each slide. (Array position 0 sets the title of the first slide, and so on.)
 
 ```java
 // Sample
 new TopUserBenefitsModel(Activity activity)
-    .setTitleText(new String[]{
-        "Title 1",
-        "Title 2",
-        "Title 3"
-    });
+    .setupSlides(
+            new Page("Title 1", "Subtitle 1", R.mipmap.ic_launcher),
+            new Page("Title 2", "Subtitle 2", R.mipmap.ic_launcher),
+            new Page("Title 3", "Subtitle 3", "Custom Button Text", R.mipmap.ic_launcher)
+    );
 ```
 
-###setSubtitles()
-
-Similar to `setTitletext()`, this method sets the subtitles for the onboarding activity.
-
-```java
-new TopUserBenefitsModel(Activity activity)
-    .setSubtitles(new String[]{
-        "Subtitle 1",
-        "Subtitle 2",
-        "Subtitle 3"
-    });
-```
-
-###setIllustrations()
-
-This method takes and array of integer resource values for each slide.
+####Page object
+The page object takes 4 parameters total. See below:
 
 ```java
-new TopUserBenefitsModel(this)
-    .setIllustrations(new int[]{
-            R.drawable.drawable1,
-            R.drawable.drawable2,
-            R.drawable.drawable3
-    });
-```
+// 3 required
+new Page(String pageTitle, String pageSubtitle, int drawableResource);
 
-###setButtonText()
-
-This method takes an array of Strings and sets the button text for each slide.
-
-<b>WARNING: overriding these fields technically violates the Material Design Guidelines, as they state that this technique should have a button that explicitly says "Get Started". Use at your own discretion. Defaults to "Get Started" if method not called.</b>
-
-```java
-new TopUserBenefitsModel(this)
-    .setButtonText(new String[]{
-       "Get Started",
-       "Get Started",
-       "Get Started"
-   });
+// 1 optional
+new Page(String pageTitle, String pageSubtitle, String buttonText, int drawableResource);
 ```
 
 ###launch()
