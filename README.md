@@ -94,7 +94,7 @@ new TopUserBenefitsModel(Activity activity)
 ```
 
 ####Page object
-The page object takes 4 parameters total. See below:
+The SSPage object takes 4 parameters total. See below:
 
 ```java
 // 3 required

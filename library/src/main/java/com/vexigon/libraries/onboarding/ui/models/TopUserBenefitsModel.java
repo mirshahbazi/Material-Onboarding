@@ -23,7 +23,7 @@ import android.support.annotation.NonNull;
 
 import com.vexigon.libraries.onboarding.obj.Page;
 import com.vexigon.libraries.onboarding.ui.activity.UserBenefitsActivity;
-import com.vexigon.libraries.onboarding.util.Keys;
+import com.vexigon.libraries.onboarding.util.BenefitsKeys;
 
 import java.util.ArrayList;
 
@@ -31,6 +31,7 @@ import java.util.ArrayList;
  * Created by Andrew Quebe on 3/2/2017.
  */
 
+@SuppressWarnings("FieldCanBeLocal")
 public class TopUserBenefitsModel {
 
     private String[] titleText, subtitleText, buttonText;
@@ -139,34 +140,34 @@ public class TopUserBenefitsModel {
         int[] illustrationRes = new int[3];
 
         int count = 0;
-        for (Page p : pages) {
-            if (p.getTitle().equals("")) {
+        for (Page page : pages) {
+            if (page.getTitle().equals(""))
                 throw new RuntimeException("The title for page " + (count + 1) + " was blank.");
-            } else if (p.getSubtitle().equals("")) {
+            else if (page.getSubtitle().equals(""))
                 throw new RuntimeException("The subtitle for page " + (count + 1) + " was blank.");
-            } else if (p.getDrawableRes() == 0) {
+            else if (page.getDrawableRes() == 0) {
                 throw new RuntimeException("The image resource for page " + (count + 1) + " was blank.");
-            } else if (p.getButtonText() == null) {
-                titleText[count] = p.getTitle();
-                subtitleText[count] = p.getSubtitle();
+            } else if (page.getButtonText() == null) {
+                titleText[count] = page.getTitle();
+                subtitleText[count] = page.getSubtitle();
                 buttonText[count] = "Get Started";
-                illustrationRes[count] = p.getDrawableRes();
+                illustrationRes[count] = page.getDrawableRes();
                 count++;
             } else {
-                titleText[count] = p.getTitle();
-                subtitleText[count] = p.getSubtitle();
-                buttonText[count] = p.getButtonText();
-                illustrationRes[count] = p.getDrawableRes();
+                titleText[count] = page.getTitle();
+                subtitleText[count] = page.getSubtitle();
+                buttonText[count] = page.getButtonText();
+                illustrationRes[count] = page.getDrawableRes();
                 count++;
             }
         }
 
         return new Intent(context, UserBenefitsActivity.class)
-                .putExtra(Keys.TITLE_TEXT, titleText)
-                .putExtra(Keys.SUBTITLE_TEXT, subtitleText)
-                .putExtra(Keys.BUTTON_TEXT, buttonText)
-                .putExtra(Keys.ILLUSTRATION_RES, illustrationRes)
-                .putExtra(Keys.BACKGROUND_COLOR_RES, backgroundColorRes);
+                .putExtra(BenefitsKeys.TITLE_TEXT, titleText)
+                .putExtra(BenefitsKeys.SUBTITLE_TEXT, subtitleText)
+                .putExtra(BenefitsKeys.BUTTON_TEXT, buttonText)
+                .putExtra(BenefitsKeys.ILLUSTRATION_RES, illustrationRes)
+                .putExtra(BenefitsKeys.BACKGROUND_COLOR_RES, backgroundColorRes);
     }
 
     /**

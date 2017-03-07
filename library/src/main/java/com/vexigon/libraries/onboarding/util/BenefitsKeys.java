@@ -1,4 +1,4 @@
-package com.vexigon.libraries.onboarding.ui.interfaces;
+package com.vexigon.libraries.onboarding.util;
 
 /*
  * Copyright 2017 Vexigon, LLC
@@ -20,14 +20,11 @@ package com.vexigon.libraries.onboarding.ui.interfaces;
  * Created by Andrew Quebe on 3/2/2017.
  */
 
-public interface FragmentInterface {
-    String getTitleText(int position);
 
-    String getSubtitleText(int position);
-
-    String getButtonText(int position);
-
-    int getIllustrationResource(int position);
-
-    String getBackgroundColor(int position);
+public class BenefitsKeys {
+    public static final String TITLE_TEXT = "titleText";
+    public static final String SUBTITLE_TEXT = "subtitleText";
+    public static final String BUTTON_TEXT = "buttonText";
+    public static final String ILLUSTRATION_RES = "illustrationRes";
+    public static final String BACKGROUND_COLOR_RES = "backgroundColorRes";
 }

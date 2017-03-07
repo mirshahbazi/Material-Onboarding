@@ -16,10 +16,6 @@ package com.vexigon.libraries.onboarding.obj;
  * limitations under the License.
  */
 
-/**
- * Created by Andrew Quebe on 3/5/2017.
- */
-
 public class Page {
     private String title, subtitle, buttonText;
     private int drawableRes;
