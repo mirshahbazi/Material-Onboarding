@@ -20,7 +20,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.vexigon.libraries.onboarding.ui.fragments.BenefitsFragment;
+import com.vexigon.libraries.onboarding.ui.fragments.SelfSelectFragment;
 
 /**
  * Created by Andrew Quebe on 3/2/2017.
@@ -33,7 +33,7 @@ public class SelfSelectViewpagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return new BenefitsFragment(position);
+        return new SelfSelectFragment(position);
     }
 
     @Override

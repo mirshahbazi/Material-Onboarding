@@ -1,5 +1,6 @@
 package com.vexigon.libraries.onboarding.obj.selfselect;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /*
@@ -18,7 +19,7 @@ import java.util.ArrayList;
  * limitations under the License.
  */
 
-public class SSPage {
+public class SSPage implements Serializable {
     private String title, subtitle;
     private ArrayList<BundledListItem> bundledListItems;
     private ArrayList<GridViewItem> gridViewItems;
