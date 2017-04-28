@@ -1,4 +1,4 @@
-#Material-Onboarding [![](https://jitpack.io/v/Vexigon/Material-Onboarding.svg)](https://jitpack.io/#Vexigon/Material-Onboarding)
+# Material-Onboarding [![](https://jitpack.io/v/Vexigon/Material-Onboarding.svg)](https://jitpack.io/#Vexigon/Material-Onboarding)
 
 ![Sample image](https://github.com/Vexigon/Material-Onboarding/raw/master/art/onboarding_sample.png)
 
@@ -8,15 +8,15 @@
 
 A short and simple library which allows easy replication of several app onboarding techniqies found [here](https://material.io/guidelines/growth-communications/onboarding.html).
 
-##Background
+## Background
 
 The Material Design guidelines list a lot of different techniques for onboarding users in your apps. The main concept is to remain as simple as possible, and do away with complicated introductions to your app.
 
-##*What's Included
+## *What's Included
 
 For now, this library only allows the creation of the [TopUserBenefitsModel](https://material.io/guidelines/growth-communications/onboarding.html#onboarding-top-user-benefits) technique. Later on, it will make use of the other techniques as well.
  
-##Enough Talking. How do I use this?
+## Enough Talking. How do I use this?
 
 First off, add the Gradle dependency to your app:
 
@@ -58,11 +58,11 @@ new TopUserBenefitsModel(this)
     .launch();
 ```
 
-##Code Overview
+## Code Overview
 
 Below, you'll find info for each of the methods for setting up your onboarding activity.
 
-###new TopUserBenefitsModel(Activity activity)
+### new TopUserBenefitsModel(Activity activity)
 
 The constructor takes an activity as its parameter. 
 
@@ -79,7 +79,7 @@ public void onClick(View v) {
 }
 ```
 
-###setupSlides()
+### setupSlides()
 
 This method takes a String array of titles for each slide. The items in the array correspond to the title on each slide. (Array position 0 sets the title of the first slide, and so on.)
 
@@ -93,7 +93,7 @@ new TopUserBenefitsModel(Activity activity)
     );
 ```
 
-####Page object
+#### Page object
 The SSPage object takes 4 parameters total. See below:
 
 ```java
@@ -104,15 +104,15 @@ new Page(String pageTitle, String pageSubtitle, int drawableResource);
 new Page(String pageTitle, String pageSubtitle, String buttonText, int drawableResource);
 ```
 
-###launch()
+### launch()
 
 This method launches the activity. No parameters are required.
 
-##Sample App
+## Sample App
 
 Review the sample app code [here](https://github.com/Andrew-Quebe/Material-Onboarding/tree/master/sample), and download the APK [here](https://github.com/Vexigon/Material-Onboarding/tree/master/apks).
 
-##Thanks
+## Thanks
 
 This library makes use of some other libraries made by some awesome developers around the Github community.
 
@@ -121,11 +121,11 @@ This library makes use of some other libraries made by some awesome developers a
 
 Thank you!
 
-##License
+## License
 
 See [LICENSE.md](https://github.com/Vexigon/Material-Onboarding/blob/master/LICENSE.md)
 
-##Developed By
+## Developed By
 
 Andrew Quebe
 
