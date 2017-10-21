@@ -1,4 +1,4 @@
-# Material-Onboarding [![](https://jitpack.io/v/Vexigon/Material-Onboarding.svg)](https://jitpack.io/#Vexigon/Material-Onboarding)
+# Material-Onboarding [![](https://jitpack.io/v/Vexigon/Material-Onboarding.svg)](https://jitpack.io/#Vexigon/Material-Onboarding) [![Build Status](https://travis-ci.org/Vexigon/Material-Onboarding.svg?branch=master)](https://travis-ci.org/Vexigon/Material-Onboarding) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9a2960e6b0554b9ba21a8105098b6c2a)](https://www.codacy.com/app/Andrew-Quebe/Material-Onboarding?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Vexigon/Material-Onboarding&amp;utm_campaign=Badge_Grade)
 
 ![Sample image](https://github.com/Vexigon/Material-Onboarding/raw/master/art/onboarding_sample.png)
 
