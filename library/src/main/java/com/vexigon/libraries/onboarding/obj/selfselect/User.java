@@ -1,5 +1,7 @@
 package com.vexigon.libraries.onboarding.obj.selfselect;
 
+import java.io.Serializable;
+
 /*
  * Copyright 2017 Vexigon, LLC
  *
@@ -15,7 +17,7 @@ package com.vexigon.libraries.onboarding.obj.selfselect;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-public class User {
+public class User implements Serializable {
     private String name, email;
     private int drawableRes;
 

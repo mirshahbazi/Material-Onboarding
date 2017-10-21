@@ -16,7 +16,9 @@ package com.vexigon.libraries.onboarding.obj.selfselect;
  * limitations under the License.
  */
 
-public class BundledListItem {
+import java.io.Serializable;
+
+public class BundledListItem implements Serializable {
     private String itemName, itemDesc;
     private int drawableRes, switchColor;
 

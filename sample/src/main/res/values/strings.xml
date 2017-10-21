@@ -16,5 +16,6 @@
 
 <resources>
     <string name="app_name">Onboarding Sample</string>
-    <string name="demo">Launch Demo</string>
+    <string name="demo">Launch TopUserBenefitsModel</string>
+    <string name="demo2">Launch SelfSelectModel</string>
 </resources>

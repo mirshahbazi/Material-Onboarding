@@ -28,13 +28,13 @@ import java.util.ArrayList;
  */
 
 public interface SelfSelectFragmentInterface {
-    int getUserPageImage(int position);
+    int getPageImage(int position);
 
     ArrayList<User> getLoggedInUsers();
 
-    String getSelfSelectTitle(int position);
+    String getSelfSelectTitle();
 
-    String getSelfSelectSubtitle(int position);
+    String getSelfSelectSubtitle();
 
     ArrayList<BundledListItem> getBundledListItems();
 

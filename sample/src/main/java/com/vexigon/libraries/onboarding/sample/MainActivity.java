@@ -46,17 +46,17 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
             case R.id.demo:
                 new TopUserBenefitsModel(this)
                         .setupSlides(
-                                new Page("Title 1", "Subtitle 1", R.mipmap.ic_launcher),
-                                new Page("Title 2", "Subtitle 2", R.mipmap.ic_launcher),
-                                new Page("Title 3", "Subtitle 3", "Custom Button Text", R.mipmap.ic_launcher)
+                                new Page("Title 1", "Subtitle 1", R.mipmap.ic_red),
+                                new Page("Title 2", "Subtitle 2", R.mipmap.ic_green),
+                                new Page("Title 3", "Subtitle 3", "Custom Button Text", R.mipmap.ic_blue)
                         )
                         .launch();
                 break;
             case R.id.demo2:
                 ArrayList<User> users = new ArrayList<>();
-                users.add(0, new User("Andrew Quebe", "andrewquebe@vexigon.com", R.mipmap.ic_launcher));
-                users.add(1, new User("Andrew Quebe", "andrewquebe@vexigon.com", R.mipmap.ic_launcher));
-                users.add(2, new User("Andrew Quebe", "andrewquebe@vexigon.com", R.mipmap.ic_launcher));
+                users.add(0, new User("Andrew Quebe", "andrewquebe@vexigon.com", R.mipmap.ic_red));
+                users.add(1, new User("John Doe", "john@domain.com", R.mipmap.ic_green));
+                users.add(2, new User("Jane Doe", "jane@domain.com", R.mipmap.ic_blue));
 
                 ArrayList<BundledListItem> bundledListItems = new ArrayList<>();
                 bundledListItems.add(0, new BundledListItem("Item", "An item", R.mipmap.ic_launcher));
@@ -65,16 +65,8 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 
                 new SelfSelectModel(this)
                         .setupSlides(
-                                new UserPage(
-                                        R.mipmap.ic_launcher,
-                                        users),
-                                new SSPage(
-                                        "Title",
-                                        "Subtitle",
-                                        bundledListItems,
-                                        null,
-                                        null
-                                )
+                                new UserPage(R.mipmap.ic_launcher, users),
+                                new SSPage("Title", "Subtitle", bundledListItems, null, null)
                         )
                         .launch();
                 break;

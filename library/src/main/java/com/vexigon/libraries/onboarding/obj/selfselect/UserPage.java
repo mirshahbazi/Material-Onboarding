@@ -16,9 +16,10 @@ package com.vexigon.libraries.onboarding.obj.selfselect;
  * limitations under the License.
  */
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class UserPage {
+public class UserPage implements Serializable {
     private int drawableRes;
     private ArrayList<User> users;
 

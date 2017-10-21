@@ -19,14 +19,15 @@ package com.vexigon.libraries.onboarding.ui.fragments;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -43,6 +44,8 @@ import com.vexigon.libraries.onboarding.util.SelfSelectKeys;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * Created by Andrew Quebe on 3/2/2017.
  */
@@ -52,6 +55,10 @@ public class SelfSelectFragment extends Fragment implements SelfSelectFragmentIn
     LinearLayout userView, selectionView;
     Spinner userDropdown;
     ImageView userScreenImage;
+    Button confirmButton, backButton, doneButton;
+
+
+
     int position;
 
     public SelfSelectFragment() {
@@ -75,26 +82,48 @@ public class SelfSelectFragment extends Fragment implements SelfSelectFragmentIn
 
         userView = (LinearLayout) getView().findViewById(R.id.userScreenView);
         selectionView = (LinearLayout) getView().findViewById(R.id.selectionScreenView);
-
+        userScreenImage = (ImageView) getView().findViewById(R.id.userScreenImage);
         userDropdown = (Spinner) getView().findViewById(R.id.userDropdown);
+        confirmButton = (Button) getView().findViewById(R.id.confirmButton);
 
         switch (position) {
             case 0:
                 userView.setVisibility(View.VISIBLE);
                 selectionView.setVisibility(View.GONE);
 
-                Glide.with(getActivity()).load(getUserPageImage(position)).into(userScreenImage);
-                userDropdown.setAdapter(new CustomAdapter(getContext(), R.layout.spinner_layout, getLoggedInUsers()));
+                Glide.with(getActivity()).load(getPageImage(position)).dontAnimate().into(userScreenImage);
+
+                userDropdown.setAdapter(new CustomAdapter(getLoggedInUsers()));
+                userDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        confirmButton.setText("Continue as " + ((User) userDropdown.getSelectedItem()).getName());
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        confirmButton.setText("Continue as " + ((User) userDropdown.getSelectedItem()).getName());
+                    }
+                });
+
+                confirmButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //((SelfSelectActivity) getActivity())
+                    }
+                });
                 break;
             case 1:
                 selectionView.setVisibility(View.VISIBLE);
                 userView.setVisibility(View.GONE);
+
+
                 break;
         }
     }
 
     @Override
-    public int getUserPageImage(int position) {
+    public int getPageImage(int position) {
         return getActivity().getIntent().getIntExtra(SelfSelectKeys.USER_PAGE_DRAWABALE_RES, 0);
     }
 
@@ -104,12 +133,12 @@ public class SelfSelectFragment extends Fragment implements SelfSelectFragmentIn
     }
 
     @Override
-    public String getSelfSelectTitle(int position) {
+    public String getSelfSelectTitle() {
         return getActivity().getIntent().getStringExtra(SelfSelectKeys.SELF_SELECT_PAGE_TITLE);
     }
 
     @Override
-    public String getSelfSelectSubtitle(int position) {
+    public String getSelfSelectSubtitle() {
         return getActivity().getIntent().getStringExtra(SelfSelectKeys.SELF_SELECT_PAGE_SUBTITLE);
     }
 
@@ -129,17 +158,26 @@ public class SelfSelectFragment extends Fragment implements SelfSelectFragmentIn
     }
 
     @SuppressWarnings("unchecked")
-    private class CustomAdapter extends ArrayAdapter {
+    private class CustomAdapter extends BaseAdapter {
 
         private ArrayList<User> users;
 
-        CustomAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull ArrayList<User> users) {
-            super(context, resource, users);
+        CustomAdapter(@NonNull ArrayList<User> users) {
             this.users = users;
         }
 
         @Override
         public int getCount() {
+            return users.size();
+        }
+
+        @Override
+        public User getItem(int position) {
+            return users.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
             return users.size();
         }
 
@@ -151,15 +189,15 @@ public class SelfSelectFragment extends Fragment implements SelfSelectFragmentIn
             LayoutInflater lf = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = lf.inflate(R.layout.spinner_layout, null);
 
-            ImageView profileImage = (ImageView) convertView.findViewById(R.id.profileImage);
+            CircleImageView profileImage = (CircleImageView) convertView.findViewById(R.id.profileImage);
             TextView name = (TextView) convertView.findViewById(R.id.tV_name),
                     email = (TextView) convertView.findViewById(R.id.tV_email);
 
-            Glide.with(getActivity()).load(users.get(position).getDrawableRes()).into(profileImage);
+            Glide.with(getActivity()).load(users.get(position).getDrawableRes()).dontAnimate().into(profileImage);
             name.setText(users.get(position).getName());
             email.setText(users.get(position).getEmail());
 
-            return super.getView(position, convertView, parent);
+            return convertView;
         }
     }
 }

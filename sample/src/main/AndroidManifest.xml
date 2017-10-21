@@ -33,6 +33,9 @@
         <activity
             android:name="com.vexigon.libraries.onboarding.ui.activity.UserBenefitsActivity"
             android:theme="@style/Onboarding" />
+        <activity
+            android:name="com.vexigon.libraries.onboarding.ui.activity.SelfSelectActivity"
+            android:theme="@style/Onboarding" />
     </application>
 
 </manifest>
