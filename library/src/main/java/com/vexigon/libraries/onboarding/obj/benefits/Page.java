@@ -59,6 +59,7 @@ public class Page {
 
     /**
      * Sets the title of the page
+     *
      * @param title page title.
      */
     public void setTitle(String title) {
@@ -67,6 +68,7 @@ public class Page {
 
     /**
      * Gets the subtitle of the page.
+     *
      * @return page subtitle.
      */
     public String getSubtitle() {
@@ -75,6 +77,7 @@ public class Page {
 
     /**
      * Sets the subtitle of the page.
+     *
      * @param subtitle page subtitle.
      */
     public void setSubtitle(String subtitle) {
@@ -83,6 +86,7 @@ public class Page {
 
     /**
      * Gets the button text for the page.
+     *
      * @return button text.
      */
     public String getButtonText() {
@@ -91,6 +95,7 @@ public class Page {
 
     /**
      * Sets the button text for the page.
+     *
      * @param buttonText button text.
      */
     public void setButtonText(String buttonText) {
@@ -99,6 +104,7 @@ public class Page {
 
     /**
      * Gets the drawable resource for the page.
+     *
      * @return drawable resource.
      */
     public int getDrawableRes() {
@@ -107,6 +113,7 @@ public class Page {
 
     /**
      * Sets the drawable resource for the page.
+     *
      * @param drawableRes drawable resource.
      */
     public void setDrawableRes(int drawableRes) {
