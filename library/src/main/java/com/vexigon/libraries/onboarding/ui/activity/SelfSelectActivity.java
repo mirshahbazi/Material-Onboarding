@@ -39,10 +39,10 @@ public class SelfSelectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.self_select_activity);
 
-        viewPager = (ViewPager) findViewById(R.id.selfSelectPager);
+        viewPager = findViewById(R.id.selfSelectPager);
         viewPager.setAdapter(new SelfSelectViewpagerAdapter(getSupportFragmentManager()));
 
-        inkPageIndicator = (InkPageIndicator) findViewById(R.id.indicator);
+        inkPageIndicator = findViewById(R.id.indicator);
         inkPageIndicator.setViewPager(viewPager);
     }
 }

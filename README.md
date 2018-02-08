@@ -1,4 +1,7 @@
-# Material-Onboarding [![](https://jitpack.io/v/Vexigon/Material-Onboarding.svg)](https://jitpack.io/#Vexigon/Material-Onboarding) [![Build Status](https://travis-ci.org/Vexigon/Material-Onboarding.svg?branch=master)](https://travis-ci.org/Vexigon/Material-Onboarding) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9a2960e6b0554b9ba21a8105098b6c2a)](https://www.codacy.com/app/Andrew-Quebe/Material-Onboarding?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Vexigon/Material-Onboarding&amp;utm_campaign=Badge_Grade)
+# Material-Onboarding
+[![Download](https://api.bintray.com/packages/vexigon/maven/Material-Onboarding/images/download.svg?version=1.2) ](https://bintray.com/vexigon/maven/Material-Onboarding/1.2/link)
+[![Build Status](https://travis-ci.org/Vexigon/Material-Onboarding.svg?branch=master)](https://travis-ci.org/Vexigon/Material-Onboarding)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9a2960e6b0554b9ba21a8105098b6c2a)](https://www.codacy.com/app/Andrew-Quebe/Material-Onboarding?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Vexigon/Material-Onboarding&amp;utm_campaign=Badge_Grade)
 
 ![Sample image](https://github.com/Vexigon/Material-Onboarding/raw/master/art/onboarding_sample.png)
 
@@ -12,7 +15,7 @@ A short and simple library which allows easy replication of several app onboardi
 
 The Material Design guidelines list a lot of different techniques for onboarding users in your apps. The main concept is to remain as simple as possible, and do away with complicated introductions to your app.
 
-## *What's Included
+## What's Included
 
 For now, this library only allows the creation of the [TopUserBenefitsModel](https://material.io/guidelines/growth-communications/onboarding.html#onboarding-top-user-benefits) technique. Later on, it will make use of the other techniques as well.
  
@@ -21,20 +24,16 @@ For now, this library only allows the creation of the [TopUserBenefitsModel](htt
 First off, add the Gradle dependency to your app:
 
 ```groovy
-// Add this in your root build.gradle file
-allprojects {
-    repositories {
-        // ...
-        maven { url 'https://jitpack.io' }
+// Add the following lines in your apps build.gradle file
+repositories {
+    maven {
+        url  "https://dl.bintray.com/vexigon/maven"
     }
 }
-```
 
-```groovy
-// And add this to your module build.gradle file
 dependencies {
     // ...
-    compile 'com.github.Vexigon:Material-Onboarding:v1.1.1'
+    compile 'com.vexigon:Material-Onboarding:1.2'
 }
 ```
 

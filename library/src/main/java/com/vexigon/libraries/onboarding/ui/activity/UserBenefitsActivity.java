@@ -16,6 +16,7 @@ package com.vexigon.libraries.onboarding.ui.activity;
  * limitations under the License.
  */
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -37,12 +38,13 @@ public class UserBenefitsActivity extends AppCompatActivity {
     ViewPager viewPager;
     InkPageIndicator inkPageIndicator;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_benefits_activity);
 
-        viewPager = (ViewPager) findViewById(R.id.userBenefitsPager);
+        viewPager = findViewById(R.id.userBenefitsPager);
         viewPager.setAdapter(new UserBenefitsViewpagerAdapter(getSupportFragmentManager()));
 
         viewPager.setOnTouchListener(new View.OnTouchListener() {
@@ -53,7 +55,7 @@ public class UserBenefitsActivity extends AppCompatActivity {
             }
         });
 
-        inkPageIndicator = (InkPageIndicator) findViewById(R.id.indicator);
+        inkPageIndicator = findViewById(R.id.indicator);
         inkPageIndicator.setViewPager(viewPager);
 
         start();
