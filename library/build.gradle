@@ -19,7 +19,7 @@ apply plugin: 'com.android.library'
 ext {
     PUBLISH_GROUP_ID = 'com.vexigon'
     PUBLISH_ARTIFACT_ID = 'Material-Onboarding'
-    PUBLISH_VERSION = '1.2'
+    PUBLISH_VERSION = '1.2.1'
 }
 android {
     compileSdkVersion 27
@@ -28,8 +28,8 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 5
-        versionName "1.2"
+        versionCode 6
+        versionName "1.2.1"
     }
     buildTypes {
         release {
