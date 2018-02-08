@@ -19,4 +19,6 @@
     <string name="contentDesc_image">Image</string>
     <string name="get_started">Get Started</string>
     <string name="white">#ffffff</string>
+    <string name="list_cont_desc">list image</string>
+    <string name="dummy">DummyDummyDummyDummyDummyDummyDummyDummyDummyDummyDummyDummy</string>
 </resources>

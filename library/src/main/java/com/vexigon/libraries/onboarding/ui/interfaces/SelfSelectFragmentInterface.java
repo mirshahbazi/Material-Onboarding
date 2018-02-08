@@ -38,7 +38,7 @@ public interface SelfSelectFragmentInterface {
 
     ArrayList<BundledListItem> getBundledListItems();
 
-    ArrayList<GridViewItem> getGridviewItems();
+    ArrayList<GridViewItem> getGridViewItems();
 
     ArrayList<ListItem> getListItems();
 }

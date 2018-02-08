@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 
-import com.vexigon.libraries.onboarding.obj.selfselect.SSPage;
+import com.vexigon.libraries.onboarding.obj.selfselect.SelectionPage;
 import com.vexigon.libraries.onboarding.obj.selfselect.UserPage;
 import com.vexigon.libraries.onboarding.ui.activity.SelfSelectActivity;
 import com.vexigon.libraries.onboarding.util.SelfSelectKeys;
@@ -28,15 +28,15 @@ import com.vexigon.libraries.onboarding.util.SelfSelectKeys;
 public class SelfSelectModel {
     private Context context;
     private UserPage userPage;
-    private SSPage ssPage;
+    private SelectionPage selectionPage;
 
     public SelfSelectModel(@NonNull Activity context) {
         this.context = context;
     }
 
-    public SelfSelectModel setupSlides(UserPage userPage, SSPage ssPage) {
+    public SelfSelectModel setupSlides(UserPage userPage, SelectionPage selectionPage) {
         this.userPage = userPage;
-        this.ssPage = ssPage;
+        this.selectionPage = selectionPage;
         return this;
     }
 
@@ -44,11 +44,11 @@ public class SelfSelectModel {
         return new Intent(context, SelfSelectActivity.class)
                 .putExtra(SelfSelectKeys.USER_PAGE_DRAWABALE_RES, userPage.getDrawableRes())
                 .putExtra(SelfSelectKeys.USER_PAGE_USERS, userPage.getUsers())
-                .putExtra(SelfSelectKeys.SELF_SELECT_PAGE_TITLE, ssPage.getTitle())
-                .putExtra(SelfSelectKeys.SELF_SELECT_PAGE_SUBTITLE, ssPage.getSubtitle())
-                .putExtra(SelfSelectKeys.SELF_SELECT_BUNDLED_ITEMS, ssPage.getBundledListItems())
-                .putExtra(SelfSelectKeys.SELF_SELECT_GRIDVIEW_ITEMS, ssPage.getGridViewItems())
-                .putExtra(SelfSelectKeys.SELF_SELECT_LIST_ITEMS, ssPage.getListItems());
+                .putExtra(SelfSelectKeys.SELF_SELECT_PAGE_TITLE, selectionPage.getTitle())
+                .putExtra(SelfSelectKeys.SELF_SELECT_PAGE_SUBTITLE, selectionPage.getSubtitle())
+                .putExtra(SelfSelectKeys.SELF_SELECT_BUNDLED_ITEMS, selectionPage.getBundledListItems())
+                .putExtra(SelfSelectKeys.SELF_SELECT_GRIDVIEW_ITEMS, selectionPage.getGridViewItems())
+                .putExtra(SelfSelectKeys.SELF_SELECT_LIST_ITEMS, selectionPage.getListItems());
     }
 
     public void launch() {

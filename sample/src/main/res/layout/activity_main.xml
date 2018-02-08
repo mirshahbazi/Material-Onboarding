@@ -24,14 +24,14 @@
     tools:context="com.vexigon.libraries.onboarding.sample.MainActivity">
 
     <Button
-        android:id="@+id/demo"
+        android:id="@+id/user_benefits_demo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onClick"
         android:text="@string/demo" />
 
     <Button
-        android:id="@+id/demo2"
+        android:id="@+id/self_select_demo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onClick"

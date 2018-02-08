@@ -21,7 +21,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 
-import com.vexigon.libraries.onboarding.obj.Page;
+import com.vexigon.libraries.onboarding.obj.benefits.Page;
 import com.vexigon.libraries.onboarding.ui.activity.UserBenefitsActivity;
 import com.vexigon.libraries.onboarding.util.BenefitsKeys;
 

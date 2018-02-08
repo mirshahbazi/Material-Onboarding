@@ -57,7 +57,7 @@ public class BenefitsFragment extends Fragment implements BenefitsFragmentInterf
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.user_benefits_fragment, container, false);
+        return inflater.inflate(R.layout.fragment_user_benefits, container, false);
     }
 
     @SuppressWarnings("ConstantConditions")

@@ -19,13 +19,13 @@ import java.util.ArrayList;
  * limitations under the License.
  */
 
-public class SSPage implements Serializable {
+public class SelectionPage implements Serializable {
     private String title, subtitle;
     private ArrayList<BundledListItem> bundledListItems;
     private ArrayList<GridViewItem> gridViewItems;
     private ArrayList<ListItem> listItems;
 
-    public SSPage(String title, String subtitle, ArrayList<BundledListItem> bundledListItems, ArrayList<GridViewItem> gridViewItems, ArrayList<ListItem> listItems) {
+    public SelectionPage(String title, String subtitle, ArrayList<BundledListItem> bundledListItems, ArrayList<GridViewItem> gridViewItems, ArrayList<ListItem> listItems) {
         this.title = title;
         this.subtitle = subtitle;
         this.bundledListItems = bundledListItems;

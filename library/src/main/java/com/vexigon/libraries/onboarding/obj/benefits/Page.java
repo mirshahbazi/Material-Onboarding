@@ -1,4 +1,4 @@
-package com.vexigon.libraries.onboarding.obj;
+package com.vexigon.libraries.onboarding.obj.benefits;
 
 /*
  * Copyright 2017 Vexigon, LLC

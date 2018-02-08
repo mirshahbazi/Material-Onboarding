@@ -26,12 +26,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.vexigon.libraries.onboarding.R;
@@ -39,6 +44,7 @@ import com.vexigon.libraries.onboarding.obj.selfselect.BundledListItem;
 import com.vexigon.libraries.onboarding.obj.selfselect.GridViewItem;
 import com.vexigon.libraries.onboarding.obj.selfselect.ListItem;
 import com.vexigon.libraries.onboarding.obj.selfselect.User;
+import com.vexigon.libraries.onboarding.ui.activity.SelfSelectActivity;
 import com.vexigon.libraries.onboarding.ui.interfaces.SelfSelectFragmentInterface;
 import com.vexigon.libraries.onboarding.util.SelfSelectKeys;
 
@@ -50,15 +56,17 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by Andrew Quebe on 3/2/2017.
  */
 
+@SuppressWarnings("ConstantConditions")
 public class SelfSelectFragment extends Fragment implements SelfSelectFragmentInterface {
+
+    // TODO: add butterknife
 
     LinearLayout userView, selectionView;
     Spinner userDropdown;
     ImageView userScreenImage;
+    TextView title, subtitle;
     Button confirmButton, backButton, doneButton;
-
-
-
+    ListView items;
     int position;
 
     public SelfSelectFragment() {
@@ -71,8 +79,8 @@ public class SelfSelectFragment extends Fragment implements SelfSelectFragmentIn
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.self_select_fragment, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_self_select, container, false);
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -80,11 +88,14 @@ public class SelfSelectFragment extends Fragment implements SelfSelectFragmentIn
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        userView = (LinearLayout) getView().findViewById(R.id.userScreenView);
-        selectionView = (LinearLayout) getView().findViewById(R.id.selectionScreenView);
-        userScreenImage = (ImageView) getView().findViewById(R.id.userScreenImage);
-        userDropdown = (Spinner) getView().findViewById(R.id.userDropdown);
-        confirmButton = (Button) getView().findViewById(R.id.confirmButton);
+        userView = getView().findViewById(R.id.userScreenView);
+        selectionView = getView().findViewById(R.id.selectionScreenView);
+        userScreenImage = getView().findViewById(R.id.userScreenImage);
+        userDropdown = getView().findViewById(R.id.userDropdown);
+        confirmButton = getView().findViewById(R.id.confirmButton);
+        title = getView().findViewById(R.id.pageTitle);
+        subtitle = getView().findViewById(R.id.pageSubtitle);
+        items = getView().findViewById(R.id.items);
 
         switch (position) {
             case 0:
@@ -93,7 +104,7 @@ public class SelfSelectFragment extends Fragment implements SelfSelectFragmentIn
 
                 Glide.with(getActivity()).load(getPageImage(position)).dontAnimate().into(userScreenImage);
 
-                userDropdown.setAdapter(new CustomAdapter(getLoggedInUsers()));
+                userDropdown.setAdapter(new CustomUserAdapter(getLoggedInUsers()));
                 userDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -109,7 +120,7 @@ public class SelfSelectFragment extends Fragment implements SelfSelectFragmentIn
                 confirmButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //((SelfSelectActivity) getActivity())
+                        ((SelfSelectActivity) getActivity()).viewPager.setCurrentItem(1, true);
                     }
                 });
                 break;
@@ -117,7 +128,11 @@ public class SelfSelectFragment extends Fragment implements SelfSelectFragmentIn
                 selectionView.setVisibility(View.VISIBLE);
                 userView.setVisibility(View.GONE);
 
+                title.setText(getSelfSelectTitle());
+                subtitle.setText(getSelfSelectSubtitle());
 
+                // TODO: handle different item styles later
+                items.setAdapter(new CustomBundledListItemAdapter(getContext(), R.layout.util_bundled_list_item, getBundledListItems()));
                 break;
         }
     }
@@ -148,7 +163,7 @@ public class SelfSelectFragment extends Fragment implements SelfSelectFragmentIn
     }
 
     @Override
-    public ArrayList<GridViewItem> getGridviewItems() {
+    public ArrayList<GridViewItem> getGridViewItems() {
         return (ArrayList<GridViewItem>) getActivity().getIntent().getSerializableExtra(SelfSelectKeys.SELF_SELECT_GRIDVIEW_ITEMS);
     }
 
@@ -158,11 +173,11 @@ public class SelfSelectFragment extends Fragment implements SelfSelectFragmentIn
     }
 
     @SuppressWarnings("unchecked")
-    private class CustomAdapter extends BaseAdapter {
+    private class CustomUserAdapter extends BaseAdapter {
 
         private ArrayList<User> users;
 
-        CustomAdapter(@NonNull ArrayList<User> users) {
+        CustomUserAdapter(@NonNull ArrayList<User> users) {
             this.users = users;
         }
 
@@ -187,17 +202,69 @@ public class SelfSelectFragment extends Fragment implements SelfSelectFragmentIn
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
             LayoutInflater lf = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = lf.inflate(R.layout.spinner_layout, null);
+            convertView = lf.inflate(R.layout.util_spinner_user_item, null);
 
-            CircleImageView profileImage = (CircleImageView) convertView.findViewById(R.id.profileImage);
-            TextView name = (TextView) convertView.findViewById(R.id.tV_name),
-                    email = (TextView) convertView.findViewById(R.id.tV_email);
+            CircleImageView profileImage = convertView.findViewById(R.id.profileImage);
+            TextView name = convertView.findViewById(R.id.tV_name),
+                    email = convertView.findViewById(R.id.tV_email);
 
             Glide.with(getActivity()).load(users.get(position).getDrawableRes()).dontAnimate().into(profileImage);
             name.setText(users.get(position).getName());
             email.setText(users.get(position).getEmail());
 
             return convertView;
+        }
+    }
+
+    private class CustomBundledListItemAdapter extends ArrayAdapter<BundledListItem> {
+
+        ArrayList<BundledListItem> bundledListItems;
+
+        CustomBundledListItemAdapter(@NonNull Context context, int resource, @NonNull ArrayList<BundledListItem> objects) {
+            super(context, resource, objects);
+            this.bundledListItems = objects;
+        }
+
+        @SuppressLint("InflateParams")
+        @NonNull
+        @Override
+        public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            View v = convertView;
+            if (v == null) {
+                LayoutInflater vi = LayoutInflater.from(getContext());
+                v = vi.inflate(R.layout.util_bundled_list_item, null);
+            }
+
+            BundledListItem item = getItem(position);
+
+            if (item != null) {
+                ImageView itemImage = v.findViewById(R.id.itemImage);
+                TextView itemTitle = v.findViewById(R.id.itemTitle),
+                        itemSubtitle = v.findViewById(R.id.itemSubtitle);
+                Switch itemToggle = v.findViewById(R.id.itemToggle);
+
+                if (itemImage != null)
+                    Glide.with(getContext()).load(item.getDrawableRes()).into(itemImage);
+
+                if (itemTitle != null)
+                    itemTitle.setText(item.getItemName());
+
+                if (itemSubtitle != null)
+                    itemSubtitle.setText(item.getItemDesc());
+
+                itemToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        Toast.makeText(getContext(), "Toggle #" + position + ": " + isChecked, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            return v;
+        }
+
+        @Override
+        public int getCount() {
+            return bundledListItems.size();
         }
     }
 }

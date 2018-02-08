@@ -21,9 +21,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.vexigon.libraries.onboarding.obj.Page;
+import com.vexigon.libraries.onboarding.obj.benefits.Page;
 import com.vexigon.libraries.onboarding.obj.selfselect.BundledListItem;
-import com.vexigon.libraries.onboarding.obj.selfselect.SSPage;
+import com.vexigon.libraries.onboarding.obj.selfselect.SelectionPage;
 import com.vexigon.libraries.onboarding.obj.selfselect.User;
 import com.vexigon.libraries.onboarding.obj.selfselect.UserPage;
 import com.vexigon.libraries.onboarding.sampleapp.R;
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.demo:
+            case R.id.user_benefits_demo:
                 new TopUserBenefitsModel(this)
                         .setupSlides(
                                 new Page("Title 1", "Subtitle 1", R.mipmap.ic_red),
@@ -52,21 +52,23 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                         )
                         .launch();
                 break;
-            case R.id.demo2:
+            case R.id.self_select_demo:
                 ArrayList<User> users = new ArrayList<>();
-                users.add(0, new User("Andrew Quebe", "andrewquebe@vexigon.com", R.mipmap.ic_red));
-                users.add(1, new User("John Doe", "john@domain.com", R.mipmap.ic_green));
-                users.add(2, new User("Jane Doe", "jane@domain.com", R.mipmap.ic_blue));
+                users.add(new User("Andrew Quebe", "andrewquebe@vexigon.com", R.mipmap.ic_red));
+                users.add(new User("John Doe", "john@domain.com", R.mipmap.ic_green));
+                users.add(new User("Jane Doe", "jane@domain.com", R.mipmap.ic_blue));
 
                 ArrayList<BundledListItem> bundledListItems = new ArrayList<>();
-                bundledListItems.add(0, new BundledListItem("Item", "An item", R.mipmap.ic_launcher));
-                bundledListItems.add(1, new BundledListItem("Item", "An item", R.mipmap.ic_launcher));
-                bundledListItems.add(2, new BundledListItem("Item", "An item", R.mipmap.ic_launcher));
+                for (int i = 1; i <= 100; i++) {
+                    bundledListItems.add(new BundledListItem("Item " + i, "Item Desc " + i, R.mipmap.ic_launcher));
+                }
 
                 new SelfSelectModel(this)
                         .setupSlides(
                                 new UserPage(R.mipmap.ic_launcher, users),
-                                new SSPage("Title", "Subtitle", bundledListItems, null, null)
+                                new SelectionPage("Streamline your laboratory", "Bundle hydrocarbons you want to see together. " +
+                                        "Unbundled hydrocarbons appear in your feed individually.",
+                                        bundledListItems, null, null)
                         )
                         .launch();
                 break;

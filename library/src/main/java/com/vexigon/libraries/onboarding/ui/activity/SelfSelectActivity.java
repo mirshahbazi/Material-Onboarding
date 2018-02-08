@@ -31,13 +31,13 @@ import com.vexigon.libraries.onboarding.ui.adapters.SelfSelectViewpagerAdapter;
 
 public class SelfSelectActivity extends AppCompatActivity {
 
-    ViewPager viewPager;
+    public ViewPager viewPager;
     InkPageIndicator inkPageIndicator;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.self_select_activity);
+        setContentView(R.layout.activity_self_select);
 
         viewPager = findViewById(R.id.selfSelectPager);
         viewPager.setAdapter(new SelfSelectViewpagerAdapter(getSupportFragmentManager()));
