@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.vexigon.libraries.onboarding.obj.benefits.Page;
 import com.vexigon.libraries.onboarding.obj.selfselect.BundledListItem;
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                         )
                         .launch();
                 break;
-            case R.id.self_select_demo:
+            case R.id.self_select_demo_bundled:
                 ArrayList<User> users = new ArrayList<>();
                 users.add(new User("Andrew Quebe", "andrewquebe@vexigon.com", R.mipmap.ic_red));
                 users.add(new User("John Doe", "john@domain.com", R.mipmap.ic_green));
@@ -60,7 +61,8 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 
                 ArrayList<BundledListItem> bundledListItems = new ArrayList<>();
                 for (int i = 1; i <= 100; i++) {
-                    bundledListItems.add(new BundledListItem("Item " + i, "Item Desc " + i, R.mipmap.ic_launcher));
+                    bundledListItems.add(new BundledListItem("Option " + i, "Shown individually",
+                            "Bundled", R.mipmap.ic_red));
                 }
 
                 new SelfSelectModel(this)
@@ -71,6 +73,12 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                                         bundledListItems, null, null)
                         )
                         .launch();
+                break;
+            case R.id.self_select_demo_grid:
+                Toast.makeText(this, "Soon.", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.self_select_demo_list:
+                Toast.makeText(this, "Soon.", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

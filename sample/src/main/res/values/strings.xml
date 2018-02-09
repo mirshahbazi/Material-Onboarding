@@ -16,6 +16,8 @@
 
 <resources>
     <string name="app_name">Onboarding Sample</string>
-    <string name="demo">Launch TopUserBenefitsModel</string>
-    <string name="demo2">Launch SelfSelectModel</string>
+    <string name="user_benefits">Launch TopUserBenefitsModel</string>
+    <string name="selfselect1">Launch SelfSelectModel Bundled Items</string>
+    <string name="selfselect2">Launch SelfSelectModel GridView Items</string>
+    <string name="selfselect3">Launch SelfSelectModel List Items</string>
 </resources>

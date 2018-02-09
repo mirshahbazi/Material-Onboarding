@@ -28,7 +28,7 @@ import java.util.ArrayList;
  */
 
 public interface SelfSelectFragmentInterface {
-    int getPageImage(int position);
+    int getUserScreenImage(int position);
 
     ArrayList<User> getLoggedInUsers();
 

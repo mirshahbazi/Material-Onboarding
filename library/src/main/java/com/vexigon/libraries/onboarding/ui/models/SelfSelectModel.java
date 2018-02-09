@@ -5,10 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 
+import com.vexigon.libraries.onboarding.obj.selfselect.BundledListItem;
+import com.vexigon.libraries.onboarding.obj.selfselect.GridViewItem;
+import com.vexigon.libraries.onboarding.obj.selfselect.ListItem;
 import com.vexigon.libraries.onboarding.obj.selfselect.SelectionPage;
 import com.vexigon.libraries.onboarding.obj.selfselect.UserPage;
 import com.vexigon.libraries.onboarding.ui.activity.SelfSelectActivity;
 import com.vexigon.libraries.onboarding.util.SelfSelectKeys;
+
+import java.util.ArrayList;
 
 /*
  * Copyright 2017 Vexigon, LLC
@@ -40,7 +45,14 @@ public class SelfSelectModel {
         return this;
     }
 
-    private Intent getIntent() {
+    private Intent buildIntent() {
+        if (selectionPage.getBundledListItems() == null)
+            selectionPage.setBundledListItems(new ArrayList<BundledListItem>());
+        if (selectionPage.getGridViewItems() == null)
+            selectionPage.setGridViewItems(new ArrayList<GridViewItem>());
+        if (selectionPage.getListItems() == null)
+            selectionPage.setListItems(new ArrayList<ListItem>());
+
         return new Intent(context, SelfSelectActivity.class)
                 .putExtra(SelfSelectKeys.USER_PAGE_DRAWABALE_RES, userPage.getDrawableRes())
                 .putExtra(SelfSelectKeys.USER_PAGE_USERS, userPage.getUsers())
@@ -52,6 +64,6 @@ public class SelfSelectModel {
     }
 
     public void launch() {
-        context.startActivity(getIntent());
+        context.startActivity(buildIntent());
     }
 }

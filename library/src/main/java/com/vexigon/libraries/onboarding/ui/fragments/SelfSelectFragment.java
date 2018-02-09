@@ -59,6 +59,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 @SuppressWarnings("ConstantConditions")
 public class SelfSelectFragment extends Fragment implements SelfSelectFragmentInterface {
 
+    private ListView selfSelectItems;
     private int position;
 
     public SelfSelectFragment() {
@@ -86,20 +87,19 @@ public class SelfSelectFragment extends Fragment implements SelfSelectFragmentIn
 
         // Fragment 1 views
         ImageView userScreenImage = getView().findViewById(R.id.userScreenImage);
-        final Spinner userDropdown = getView().findViewById(R.id.userDropdown);
-        final Button confirmButton = getView().findViewById(R.id.confirmButton);
+        final Spinner userDropdown = getView().findViewById(R.id.userScreenDropdown);
+        final Button confirmButton = getView().findViewById(R.id.userScreenConfirmButton);
 
         // Fragment 2 views
-        TextView pageTitle = getView().findViewById(R.id.pageTitle);
-        TextView pageSubtitle = getView().findViewById(R.id.pageSubtitle);
-        ListView selfSelectItems = getView().findViewById(R.id.selfSelectItems);
+        TextView selectionViewTitle = getView().findViewById(R.id.selectionScreenTitle);
+        TextView selectionViewSubtitle = getView().findViewById(R.id.selectionScreenSubtitle);
+        selfSelectItems = getView().findViewById(R.id.selectionScreenItems);
 
         switch (position) {
             case 0:
                 userView.setVisibility(View.VISIBLE);
-                selectionView.setVisibility(View.GONE);
 
-                Glide.with(getActivity()).load(getPageImage(position)).dontAnimate().into(userScreenImage);
+                Glide.with(getActivity()).load(getUserScreenImage(position)).dontAnimate().into(userScreenImage);
 
                 userDropdown.setAdapter(new CustomUserAdapter(getLoggedInUsers()));
                 userDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -123,18 +123,17 @@ public class SelfSelectFragment extends Fragment implements SelfSelectFragmentIn
                 break;
             case 1:
                 selectionView.setVisibility(View.VISIBLE);
-                userView.setVisibility(View.GONE);
 
-                pageTitle.setText(getSelfSelectTitle());
-                pageSubtitle.setText(getSelfSelectSubtitle());
+                selectionViewTitle.setText(getSelfSelectTitle());
+                selectionViewSubtitle.setText(getSelfSelectSubtitle());
 
-                selfSelectItems.setAdapter(new CustomBundledListItemAdapter(getContext(), R.layout.util_bundled_list_item, getBundledListItems()));
+                configureSelfSelectionList();
                 break;
         }
     }
 
     @Override
-    public int getPageImage(int position) {
+    public int getUserScreenImage(int position) {
         return getActivity().getIntent().getIntExtra(SelfSelectKeys.USER_PAGE_DRAWABALE_RES, 0);
     }
 
@@ -168,6 +167,30 @@ public class SelfSelectFragment extends Fragment implements SelfSelectFragmentIn
         return (ArrayList<ListItem>) getActivity().getIntent().getSerializableExtra(SelfSelectKeys.SELF_SELECT_LIST_ITEMS);
     }
 
+    private boolean hasBundledItems() {
+        return !getBundledListItems().isEmpty();
+    }
+
+    private boolean hasGridViewItems() {
+        return !getGridViewItems().isEmpty();
+    }
+
+    private boolean hasListItems() {
+        return !getListItems().isEmpty();
+    }
+
+    private void configureSelfSelectionList() {
+        if (hasBundledItems()) {
+            selfSelectItems.setAdapter(new CustomBundledListItemAdapter(getContext(), R.layout.util_bundled_list_item, getBundledListItems()));
+        } else if (hasGridViewItems()) {
+            Toast.makeText(getContext(), "Has GridView Items", Toast.LENGTH_SHORT).show();
+        } else if (hasListItems()) {
+            Toast.makeText(getContext(), "Has List Items", Toast.LENGTH_SHORT).show();
+        } else {
+            throw new RuntimeException("No self selectable items were specified.");
+        }
+    }
+
     @SuppressWarnings("unchecked")
     private class CustomUserAdapter extends BaseAdapter {
 
@@ -198,7 +221,7 @@ public class SelfSelectFragment extends Fragment implements SelfSelectFragmentIn
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
             LayoutInflater lf = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = lf.inflate(R.layout.util_spinner_user_item, null);
+            convertView = lf.inflate(R.layout.util_user_dropdown_item, null);
 
             CircleImageView profileImage = convertView.findViewById(R.id.profileImage);
             TextView name = convertView.findViewById(R.id.tV_name),
@@ -231,13 +254,13 @@ public class SelfSelectFragment extends Fragment implements SelfSelectFragmentIn
                 v = vi.inflate(R.layout.util_bundled_list_item, null);
             }
 
-            BundledListItem item = getItem(position);
+            final BundledListItem item = getItem(position);
 
             if (item != null) {
-                ImageView itemImage = v.findViewById(R.id.itemImage);
-                TextView itemTitle = v.findViewById(R.id.itemTitle),
-                        itemSubtitle = v.findViewById(R.id.itemSubtitle);
-                Switch itemToggle = v.findViewById(R.id.itemToggle);
+                ImageView itemImage = v.findViewById(R.id.bundledItemImage);
+                final TextView itemTitle = v.findViewById(R.id.bundledItemTitle),
+                        itemSubtitle = v.findViewById(R.id.bundledItemSubtitle);
+                Switch itemToggle = v.findViewById(R.id.bundledItemToggle);
 
                 if (itemImage != null)
                     Glide.with(getContext()).load(item.getDrawableRes()).into(itemImage);
@@ -251,7 +274,12 @@ public class SelfSelectFragment extends Fragment implements SelfSelectFragmentIn
                 itemToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        Toast.makeText(getContext(), "Toggle #" + position + ": " + isChecked, Toast.LENGTH_SHORT).show();
+                        if (isChecked) {
+                            if (item.getToggledItemDesc() != null)
+                                itemSubtitle.setText(item.getToggledItemDesc());
+                        } else {
+                            itemSubtitle.setText(item.getItemDesc());
+                        }
                     }
                 });
             }
@@ -286,10 +314,10 @@ public class SelfSelectFragment extends Fragment implements SelfSelectFragmentIn
             BundledListItem item = getItem(position);
 
             if (item != null) {
-                ImageView itemImage = v.findViewById(R.id.itemImage);
-                TextView itemTitle = v.findViewById(R.id.itemTitle),
-                        itemSubtitle = v.findViewById(R.id.itemSubtitle);
-                Switch itemToggle = v.findViewById(R.id.itemToggle);
+                ImageView itemImage = v.findViewById(R.id.bundledItemImage);
+                TextView itemTitle = v.findViewById(R.id.bundledItemTitle),
+                        itemSubtitle = v.findViewById(R.id.bundledItemSubtitle);
+                Switch itemToggle = v.findViewById(R.id.bundledItemToggle);
 
                 if (itemImage != null)
                     Glide.with(getContext()).load(item.getDrawableRes()).into(itemImage);

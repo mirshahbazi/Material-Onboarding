@@ -19,8 +19,8 @@ package com.vexigon.libraries.onboarding.obj.selfselect;
 import java.io.Serializable;
 
 public class BundledListItem implements Serializable {
-    private String itemName, itemDesc;
-    private int drawableRes, switchColor;
+    private String itemName, itemDesc, toggledItemDesc;
+    private int drawableRes;
 
     public BundledListItem(String itemName, String itemDesc, int drawableRes) {
         this.itemName = itemName;
@@ -28,11 +28,11 @@ public class BundledListItem implements Serializable {
         this.drawableRes = drawableRes;
     }
 
-    public BundledListItem(String itemName, String itemDesc, int drawableRes, int switchColor) {
+    public BundledListItem(String itemName, String itemDesc, String toggledItemDesc, int drawableRes) {
         this.itemName = itemName;
         this.itemDesc = itemDesc;
+        this.toggledItemDesc = toggledItemDesc;
         this.drawableRes = drawableRes;
-        this.switchColor = switchColor;
     }
 
     public String getItemName() {
@@ -51,19 +51,19 @@ public class BundledListItem implements Serializable {
         this.itemDesc = itemDesc;
     }
 
+    public String getToggledItemDesc() {
+        return toggledItemDesc;
+    }
+
+    public void setToggledItemDesc(String toggledItemDesc) {
+        this.toggledItemDesc = toggledItemDesc;
+    }
+
     public int getDrawableRes() {
         return drawableRes;
     }
 
     public void setDrawableRes(int drawableRes) {
         this.drawableRes = drawableRes;
-    }
-
-    public int getSwitchColor() {
-        return switchColor;
-    }
-
-    public void setSwitchColor(int switchColor) {
-        this.switchColor = switchColor;
     }
 }

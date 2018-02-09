@@ -28,13 +28,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onClick"
-        android:text="@string/demo" />
+        android:text="@string/user_benefits" />
 
     <Button
-        android:id="@+id/self_select_demo"
+        android:id="@+id/self_select_demo_bundled"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onClick"
-        android:text="@string/demo2" />
+        android:text="@string/selfselect1" />
+
+    <Button
+        android:id="@+id/self_select_demo_grid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="@string/selfselect2" />
+
+    <Button
+        android:id="@+id/self_select_demo_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="@string/selfselect3" />
 
 </LinearLayout>

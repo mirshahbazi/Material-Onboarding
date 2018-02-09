@@ -22,7 +22,7 @@
     android:padding="12dp">
 
     <ImageView
-        android:id="@+id/itemImage"
+        android:id="@+id/bundledItemImage"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:contentDescription="@string/list_cont_desc"
@@ -34,8 +34,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/itemImage"
-        android:layout_toRightOf="@+id/itemImage"
+        android:layout_toEndOf="@+id/bundledItemImage"
+        android:layout_toRightOf="@+id/bundledItemImage"
         android:orientation="vertical"
         android:paddingEnd="12dp"
         android:paddingLeft="12dp"
@@ -44,7 +44,7 @@
         tools:ignore="RtlSymmetry">
 
         <TextView
-            android:id="@+id/itemTitle"
+            android:id="@+id/bundledItemTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -53,7 +53,7 @@
             android:text="@string/dummy" />
 
         <TextView
-            android:id="@+id/itemSubtitle"
+            android:id="@+id/bundledItemSubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -64,7 +64,7 @@
     </LinearLayout>
 
     <Switch
-        android:id="@+id/itemToggle"
+        android:id="@+id/bundledItemToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
