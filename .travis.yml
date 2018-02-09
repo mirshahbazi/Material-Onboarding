@@ -6,9 +6,8 @@ android:
   components:
     - platform-tools
     - tools
-    - tools
     - build-tools
-    - android
+    - android-27
     - extra-android-m2repository
 
 script: ./gradlew connectedAndroidTest
