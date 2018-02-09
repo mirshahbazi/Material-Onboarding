@@ -2,6 +2,7 @@ android:
   components:
     # Update Android SDK Tools
     - tools
+    - tools
 
     - build-tools-27.0.2
     - android-27
