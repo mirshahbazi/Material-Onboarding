@@ -34,10 +34,6 @@ android {
     }
 }
 
-repositories {
-    maven { url "https://dl.bintray.com/vexigon/maven" }
-}
-
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':library')
