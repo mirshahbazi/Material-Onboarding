@@ -16,7 +16,10 @@ package com.vexigon.libraries.onboarding.sample;
  * limitations under the License.
  */
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +27,7 @@ import android.widget.Toast;
 
 import com.vexigon.libraries.onboarding.obj.benefits.Page;
 import com.vexigon.libraries.onboarding.obj.selfselect.BundledListItem;
+import com.vexigon.libraries.onboarding.obj.selfselect.GridViewItem;
 import com.vexigon.libraries.onboarding.obj.selfselect.SelectionPage;
 import com.vexigon.libraries.onboarding.obj.selfselect.User;
 import com.vexigon.libraries.onboarding.obj.selfselect.UserPage;
@@ -54,10 +58,10 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                         .launch();
                 break;
             case R.id.self_select_demo_bundled:
-                ArrayList<User> users = new ArrayList<>();
-                users.add(new User("Andrew Quebe", "andrewquebe@vexigon.com", R.mipmap.ic_red));
-                users.add(new User("John Doe", "john@domain.com", R.mipmap.ic_green));
-                users.add(new User("Jane Doe", "jane@domain.com", R.mipmap.ic_blue));
+                ArrayList<User> users1 = new ArrayList<>();
+                users1.add(new User("Andrew Quebe", "andrewquebe@vexigon.com", R.mipmap.ic_red));
+                users1.add(new User("John Doe", "john@domain.com", R.mipmap.ic_green));
+                users1.add(new User("Jane Doe", "jane@domain.com", R.mipmap.ic_blue));
 
                 ArrayList<BundledListItem> bundledListItems = new ArrayList<>();
                 for (int i = 1; i <= 100; i++) {
@@ -67,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 
                 new SelfSelectModel(this)
                         .setupSlides(
-                                new UserPage(R.mipmap.ic_launcher, users),
+                                new UserPage(R.mipmap.ic_launcher, users1),
                                 new SelectionPage("Streamline your laboratory", "Bundle hydrocarbons you want to see together. " +
                                         "Unbundled hydrocarbons appear in your feed individually.",
                                         bundledListItems, null, null)
@@ -75,7 +79,24 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                         .launch();
                 break;
             case R.id.self_select_demo_grid:
-                Toast.makeText(this, "Soon.", Toast.LENGTH_SHORT).show();
+                ArrayList<User> users2 = new ArrayList<>();
+                users2.add(new User("Andrew Quebe", "andrewquebe@vexigon.com", R.mipmap.ic_red));
+                users2.add(new User("John Doe", "john@domain.com", R.mipmap.ic_green));
+                users2.add(new User("Jane Doe", "jane@domain.com", R.mipmap.ic_blue));
+
+                ArrayList<GridViewItem> gridViewItems = new ArrayList<>();
+                for (int i = 1; i <= 96; i++) {
+                    gridViewItems.add(new GridViewItem("Option " + i, R.drawable.blue));
+                }
+
+                new SelfSelectModel(this)
+                        .setupSlides(
+                                new UserPage(R.mipmap.ic_launcher, users2),
+                                new SelectionPage("Streamline your laboratory", "Bundle hydrocarbons you want to see together. " +
+                                        "Unbundled hydrocarbons appear in your feed individually.",
+                                        null, gridViewItems, null)
+                        )
+                        .launch();
                 break;
             case R.id.self_select_demo_list:
                 Toast.makeText(this, "Soon.", Toast.LENGTH_SHORT).show();

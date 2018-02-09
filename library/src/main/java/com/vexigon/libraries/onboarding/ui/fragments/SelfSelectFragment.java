@@ -30,6 +30,7 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -60,6 +61,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class SelfSelectFragment extends Fragment implements SelfSelectFragmentInterface {
 
     private ListView selfSelectItems;
+    private GridView selfSelectGridItems;
     private int position;
 
     public SelfSelectFragment() {
@@ -94,6 +96,7 @@ public class SelfSelectFragment extends Fragment implements SelfSelectFragmentIn
         TextView selectionViewTitle = getView().findViewById(R.id.selectionScreenTitle);
         TextView selectionViewSubtitle = getView().findViewById(R.id.selectionScreenSubtitle);
         selfSelectItems = getView().findViewById(R.id.selectionScreenItems);
+        selfSelectGridItems = getView().findViewById(R.id.selectionScreenGridItems);
 
         switch (position) {
             case 0:
@@ -181,9 +184,11 @@ public class SelfSelectFragment extends Fragment implements SelfSelectFragmentIn
 
     private void configureSelfSelectionList() {
         if (hasBundledItems()) {
+            selfSelectItems.setVisibility(View.VISIBLE);
             selfSelectItems.setAdapter(new CustomBundledListItemAdapter(getContext(), R.layout.util_bundled_list_item, getBundledListItems()));
         } else if (hasGridViewItems()) {
-            Toast.makeText(getContext(), "Has GridView Items", Toast.LENGTH_SHORT).show();
+            selfSelectGridItems.setVisibility(View.VISIBLE);
+            selfSelectGridItems.setAdapter(new CustomGridViewItemAdapter(getContext(), R.layout.util_gridview_item, getGridViewItems()));
         } else if (hasListItems()) {
             Toast.makeText(getContext(), "Has List Items", Toast.LENGTH_SHORT).show();
         } else {
@@ -292,11 +297,11 @@ public class SelfSelectFragment extends Fragment implements SelfSelectFragmentIn
         }
     }
 
-    private class CustomGridViewItemAdapter extends ArrayAdapter<BundledListItem> {
+    private class CustomGridViewItemAdapter extends ArrayAdapter<GridViewItem> {
 
-        ArrayList<BundledListItem> gridViewItems;
+        ArrayList<GridViewItem> gridViewItems;
 
-        CustomGridViewItemAdapter(@NonNull Context context, int resource, @NonNull ArrayList<BundledListItem> objects) {
+        CustomGridViewItemAdapter(@NonNull Context context, int resource, @NonNull ArrayList<GridViewItem> objects) {
             super(context, resource, objects);
             this.gridViewItems = objects;
         }
@@ -308,32 +313,20 @@ public class SelfSelectFragment extends Fragment implements SelfSelectFragmentIn
             View v = convertView;
             if (v == null) {
                 LayoutInflater vi = LayoutInflater.from(getContext());
-                v = vi.inflate(R.layout.util_bundled_list_item, null);
+                v = vi.inflate(R.layout.util_gridview_item, null);
             }
 
-            BundledListItem item = getItem(position);
+            GridViewItem item = getItem(position);
 
             if (item != null) {
-                ImageView itemImage = v.findViewById(R.id.bundledItemImage);
-                TextView itemTitle = v.findViewById(R.id.bundledItemTitle),
-                        itemSubtitle = v.findViewById(R.id.bundledItemSubtitle);
-                Switch itemToggle = v.findViewById(R.id.bundledItemToggle);
+                ImageView itemImage = v.findViewById(R.id.gridViewImage);
+                TextView itemTitle = v.findViewById(R.id.gridViewTitle);
 
                 if (itemImage != null)
                     Glide.with(getContext()).load(item.getDrawableRes()).into(itemImage);
 
                 if (itemTitle != null)
                     itemTitle.setText(item.getItemName());
-
-                if (itemSubtitle != null)
-                    itemSubtitle.setText(item.getItemDesc());
-
-                itemToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        Toast.makeText(getContext(), "Toggle #" + position + ": " + isChecked, Toast.LENGTH_SHORT).show();
-                    }
-                });
             }
             return v;
         }

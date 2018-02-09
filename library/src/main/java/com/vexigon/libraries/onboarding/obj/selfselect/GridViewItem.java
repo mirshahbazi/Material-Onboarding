@@ -1,5 +1,7 @@
 package com.vexigon.libraries.onboarding.obj.selfselect;
 
+import android.graphics.drawable.ColorDrawable;
+
 import java.io.Serializable;
 
 /*
@@ -20,6 +22,11 @@ import java.io.Serializable;
 public class GridViewItem implements Serializable {
     private int drawableRes;
     private String itemName;
+
+    public GridViewItem(String itemName, int drawableRes) {
+        this.itemName = itemName;
+        this.drawableRes = drawableRes;
+    }
 
     public int getDrawableRes() {
         return drawableRes;
