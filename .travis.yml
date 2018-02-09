@@ -7,10 +7,13 @@ before_install:
 
 android:
   components:
+    - tools
     - platform-tools
     - tools
+    
     - build-tools
     - android-27
+    - extra-google-m2repository
     - extra-android-m2repository
 
 script: ./gradlew connectedAndroidTest
