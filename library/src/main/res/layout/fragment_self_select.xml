@@ -90,7 +90,7 @@
             android:textSize="14sp" />
 
         <ListView
-            android:id="@+id/items"
+            android:id="@+id/selfSelectItems"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"

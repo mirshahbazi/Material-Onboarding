@@ -38,10 +38,6 @@ public class SelfSelectViewpagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        /*
-         * A maximum of three illustrations should auto-rotate every two to three seconds and display pagination navigation.
-         * https://material.io/guidelines/growth-communications/onboarding.html#onboarding-top-user-benefits
-         */
         return 2;
     }
 }

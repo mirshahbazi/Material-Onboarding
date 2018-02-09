@@ -34,13 +34,8 @@ import java.util.ArrayList;
 @SuppressWarnings("FieldCanBeLocal")
 public class TopUserBenefitsModel {
 
-    private String[] titleText, subtitleText, buttonText;
-    private int[] illustrationRes;
     private Context context;
-
     private ArrayList<Page> pages = new ArrayList<>();
-
-    private String[] backgroundColorRes;
 
     /**
      * Creates a new instance of the TopUserBenefitsModel
@@ -49,58 +44,6 @@ public class TopUserBenefitsModel {
      */
     public TopUserBenefitsModel(@NonNull Activity context) {
         this.context = context;
-    }
-
-    /**
-     * Sets the title text for the TopUserBenefitsModel
-     *
-     * @param titleText an array of Strings for each slide.
-     * @return TopUserBenefitsModel
-     * @deprecated use {@link #setupSlides(Page, Page, Page)} instead
-     */
-    @Deprecated
-    public TopUserBenefitsModel setTitleText(String[] titleText) {
-        this.titleText = titleText;
-        return this;
-    }
-
-    /**
-     * Sets the subtitle text for the TopUserBenefitsModel
-     *
-     * @param subtitleText an array of Strings for each slide.
-     * @return TopUserBenefitsModel
-     * @deprecated use {@link #setupSlides(Page, Page, Page)} instead
-     */
-    @Deprecated
-    public TopUserBenefitsModel setSubtitles(String[] subtitleText) {
-        this.subtitleText = subtitleText;
-        return this;
-    }
-
-    /**
-     * Sets the button text for the TopUserBenfitsModel
-     *
-     * @param buttonText an array of Strings for each slide.
-     * @return TopUserBenefitsModel
-     * @deprecated use {@link #setupSlides(Page, Page, Page)} instead
-     */
-    @Deprecated
-    public TopUserBenefitsModel setButtonText(String[] buttonText) {
-        this.buttonText = buttonText;
-        return this;
-    }
-
-    /**
-     * Sets the illustrations for the TopUserBenefitsModel
-     *
-     * @param illustrationRes an array of image resources for each slide.
-     * @return TopUserBenefitsModel
-     * @deprecated use {@link #setupSlides(Page, Page, Page)} instead
-     */
-    @Deprecated
-    public TopUserBenefitsModel setIllustrations(int[] illustrationRes) {
-        this.illustrationRes = illustrationRes;
-        return this;
     }
 
     /**
@@ -119,23 +62,11 @@ public class TopUserBenefitsModel {
     }
 
     /**
-     * NOTE: private for now as more work is needed for status bar coloring.
-     * Sets the background colors of each slide in the TopUserBenefitsModel
-     *
-     * @param backgroundColorRes an array of Color Hex Strings for each slide.
-     * @return TopUserBenefitsModel
-     */
-    private TopUserBenefitsModel setBackgroundColors(String[] backgroundColorRes) {
-        this.backgroundColorRes = backgroundColorRes;
-        return this;
-    }
-
-    /**
      * Checks text and image resources for null values, and returns an intent that stores the non null values.
      *
      * @return Intent
      */
-    private Intent getIntent() {
+    private Intent buildIntent() {
         String[] titleText = new String[3], subtitleText = new String[3], buttonText = new String[3];
         int[] illustrationRes = new int[3];
 
@@ -166,14 +97,13 @@ public class TopUserBenefitsModel {
                 .putExtra(BenefitsKeys.TITLE_TEXT, titleText)
                 .putExtra(BenefitsKeys.SUBTITLE_TEXT, subtitleText)
                 .putExtra(BenefitsKeys.BUTTON_TEXT, buttonText)
-                .putExtra(BenefitsKeys.ILLUSTRATION_RES, illustrationRes)
-                .putExtra(BenefitsKeys.BACKGROUND_COLOR_RES, backgroundColorRes);
+                .putExtra(BenefitsKeys.ILLUSTRATION_RES, illustrationRes);
     }
 
     /**
-     * Launches the activity with the getIntent() data stored.
+     * Launches the activity with the buildIntent() data stored.
      */
     public void launch() {
-        context.startActivity(getIntent());
+        context.startActivity(buildIntent());
     }
 }

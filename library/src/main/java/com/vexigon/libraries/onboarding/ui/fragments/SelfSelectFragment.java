@@ -59,15 +59,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 @SuppressWarnings("ConstantConditions")
 public class SelfSelectFragment extends Fragment implements SelfSelectFragmentInterface {
 
-    // TODO: add butterknife
-
-    LinearLayout userView, selectionView;
-    Spinner userDropdown;
-    ImageView userScreenImage;
-    TextView title, subtitle;
-    Button confirmButton, backButton, doneButton;
-    ListView items;
-    int position;
+    private int position;
 
     public SelfSelectFragment() {
     }
@@ -88,14 +80,19 @@ public class SelfSelectFragment extends Fragment implements SelfSelectFragmentIn
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        userView = getView().findViewById(R.id.userScreenView);
-        selectionView = getView().findViewById(R.id.selectionScreenView);
-        userScreenImage = getView().findViewById(R.id.userScreenImage);
-        userDropdown = getView().findViewById(R.id.userDropdown);
-        confirmButton = getView().findViewById(R.id.confirmButton);
-        title = getView().findViewById(R.id.pageTitle);
-        subtitle = getView().findViewById(R.id.pageSubtitle);
-        items = getView().findViewById(R.id.items);
+        // Fragment view containers
+        LinearLayout userView = getView().findViewById(R.id.userScreenView);
+        LinearLayout selectionView = getView().findViewById(R.id.selectionScreenView);
+
+        // Fragment 1 views
+        ImageView userScreenImage = getView().findViewById(R.id.userScreenImage);
+        final Spinner userDropdown = getView().findViewById(R.id.userDropdown);
+        final Button confirmButton = getView().findViewById(R.id.confirmButton);
+
+        // Fragment 2 views
+        TextView pageTitle = getView().findViewById(R.id.pageTitle);
+        TextView pageSubtitle = getView().findViewById(R.id.pageSubtitle);
+        ListView selfSelectItems = getView().findViewById(R.id.selfSelectItems);
 
         switch (position) {
             case 0:
@@ -128,11 +125,10 @@ public class SelfSelectFragment extends Fragment implements SelfSelectFragmentIn
                 selectionView.setVisibility(View.VISIBLE);
                 userView.setVisibility(View.GONE);
 
-                title.setText(getSelfSelectTitle());
-                subtitle.setText(getSelfSelectSubtitle());
+                pageTitle.setText(getSelfSelectTitle());
+                pageSubtitle.setText(getSelfSelectSubtitle());
 
-                // TODO: handle different item styles later
-                items.setAdapter(new CustomBundledListItemAdapter(getContext(), R.layout.util_bundled_list_item, getBundledListItems()));
+                selfSelectItems.setAdapter(new CustomBundledListItemAdapter(getContext(), R.layout.util_bundled_list_item, getBundledListItems()));
                 break;
         }
     }
@@ -265,6 +261,58 @@ public class SelfSelectFragment extends Fragment implements SelfSelectFragmentIn
         @Override
         public int getCount() {
             return bundledListItems.size();
+        }
+    }
+
+    private class CustomGridViewItemAdapter extends ArrayAdapter<BundledListItem> {
+
+        ArrayList<BundledListItem> gridViewItems;
+
+        CustomGridViewItemAdapter(@NonNull Context context, int resource, @NonNull ArrayList<BundledListItem> objects) {
+            super(context, resource, objects);
+            this.gridViewItems = objects;
+        }
+
+        @SuppressLint("InflateParams")
+        @NonNull
+        @Override
+        public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            View v = convertView;
+            if (v == null) {
+                LayoutInflater vi = LayoutInflater.from(getContext());
+                v = vi.inflate(R.layout.util_bundled_list_item, null);
+            }
+
+            BundledListItem item = getItem(position);
+
+            if (item != null) {
+                ImageView itemImage = v.findViewById(R.id.itemImage);
+                TextView itemTitle = v.findViewById(R.id.itemTitle),
+                        itemSubtitle = v.findViewById(R.id.itemSubtitle);
+                Switch itemToggle = v.findViewById(R.id.itemToggle);
+
+                if (itemImage != null)
+                    Glide.with(getContext()).load(item.getDrawableRes()).into(itemImage);
+
+                if (itemTitle != null)
+                    itemTitle.setText(item.getItemName());
+
+                if (itemSubtitle != null)
+                    itemSubtitle.setText(item.getItemDesc());
+
+                itemToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        Toast.makeText(getContext(), "Toggle #" + position + ": " + isChecked, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            return v;
+        }
+
+        @Override
+        public int getCount() {
+            return gridViewItems.size();
         }
     }
 }
