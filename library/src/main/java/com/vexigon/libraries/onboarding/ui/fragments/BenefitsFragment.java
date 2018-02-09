@@ -38,6 +38,7 @@ import com.vexigon.libraries.onboarding.util.BenefitsKeys;
  * Created by Andrew Quebe on 3/2/2017.
  */
 
+@SuppressWarnings("ConstantConditions")
 public class BenefitsFragment extends Fragment implements BenefitsFragmentInterface {
 
     LinearLayout layout;

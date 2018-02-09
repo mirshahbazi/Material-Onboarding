@@ -319,14 +319,31 @@ public class SelfSelectFragment extends Fragment implements SelfSelectFragmentIn
             GridViewItem item = getItem(position);
 
             if (item != null) {
-                ImageView itemImage = v.findViewById(R.id.gridViewImage);
+                CircleImageView itemImage = v.findViewById(R.id.gridViewImage);
                 TextView itemTitle = v.findViewById(R.id.gridViewTitle);
+                final ImageView check = v.findViewById(R.id.gridViewCheck);
+
 
                 if (itemImage != null)
                     Glide.with(getContext()).load(item.getDrawableRes()).into(itemImage);
 
                 if (itemTitle != null)
                     itemTitle.setText(item.getItemName());
+
+                /*itemImage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        switch (check.getVisibility()) {
+                            case View.VISIBLE:
+                                check.setVisibility(View.GONE);
+                                break;
+                            case View.INVISIBLE:
+                            case View.GONE:
+                                check.setVisibility(View.VISIBLE);
+                                break;
+                        }
+                    }
+                });*/
             }
             return v;
         }

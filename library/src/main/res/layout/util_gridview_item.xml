@@ -22,23 +22,41 @@
     android:orientation="vertical"
     android:padding="8dp">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/gridViewImage"
+    <FrameLayout
+        android:id="@+id/imageContainer"
         android:layout_width="96dp"
         android:layout_height="96dp"
-        android:layout_centerHorizontal="true"
-        android:contentDescription="@string/list_cont_desc"
-        android:elevation="4dp"
-        android:src="@android:color/darker_gray"
-        app:civ_border_color="@android:color/white"
-        app:civ_border_width="2dp"
-        tools:targetApi="lollipop" />
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/gridViewCheck"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:contentDescription="@string/list_cont_desc"
+            android:elevation="5dp"
+            android:padding="34dp"
+            android:src="@drawable/ic_check"
+            android:visibility="gone"
+            tools:targetApi="lollipop" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/gridViewImage"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:contentDescription="@string/list_cont_desc"
+            android:elevation="4dp"
+            android:padding="2dp"
+            android:src="@android:color/holo_blue_dark"
+            app:civ_border_color="@android:color/white"
+            app:civ_border_width="2dp"
+            tools:targetApi="lollipop" />
+    </FrameLayout>
 
     <TextView
         android:id="@+id/gridViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/gridViewImage"
+        android:layout_below="@+id/imageContainer"
         android:ellipsize="end"
         android:ems="7"
         android:maxLines="2"
