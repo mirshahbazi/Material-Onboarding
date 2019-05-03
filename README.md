@@ -21,17 +21,7 @@ For now, this library only allows the creation of the [TopUserBenefitsModel](htt
 First off, add the Gradle dependency to your app:
 
 ```groovy
-// Add the following lines in your apps build.gradle file
-repositories {
-    maven {
-        url  "https://dl.bintray.com/vexigon/maven"
-    }
-}
-
-dependencies {
-    // ...
-    compile 'com.vexigon:Material-Onboarding:1.2'
-}
+// TODO
 ```
 
 Next, add a manifest activity declaration, and set its theme. <b>NOTE: Make sure your theme's parent is `Sometheme.NoActionBar` otherwise your onboarding activity will have a toolbar.</b>
@@ -106,7 +96,7 @@ This method launches the activity. No parameters are required.
 
 ## Sample App
 
-Review the sample app code [here](https://github.com/Andrew-Quebe/Material-Onboarding/tree/master/sample), and download the APK [here](https://github.com/Vexigon/Material-Onboarding/tree/master/apks).
+Review the sample app code [here](https://github.com/Andrew-Quebe/Material-Onboarding/tree/master/sample).
 
 ## Thanks
 
@@ -125,5 +115,6 @@ See [LICENSE.md](https://github.com/Andrew-Quebe/Material-Onboarding/blob/master
 
 Andrew Quebe
 
-[Github](https://github.com/Andrew-Quebe) | [Google+](https://google.com/+AndrewQuebe) | [Twitter](https://twitter.com/andrew_quebe)
+[andrewquebe@vexigon.com](mailto:andrewquebe@vexigon.com)
 
+[Website](http://www.andrewquebe.com) | [Github](https://github.com/Andrew-Quebe)
