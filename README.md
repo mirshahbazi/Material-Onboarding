@@ -111,7 +111,7 @@ Thank you!
 
 See [LICENSE.md](https://github.com/Andrew-Quebe/Material-Onboarding/blob/master/LICENSE.md)
 
-## Developed By
+## Developer Info
 
 Andrew Quebe
 
