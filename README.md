@@ -120,7 +120,7 @@ Thank you!
 
 ## License
 
-See [LICENSE.md](https://github.com/Vexigon/Material-Onboarding/blob/master/LICENSE.md)
+See [LICENSE.md](https://github.com/Andrew-Quebe/Material-Onboarding/blob/master/LICENSE.md)
 
 ## Developed By
 
