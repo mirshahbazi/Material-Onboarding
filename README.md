@@ -21,7 +21,9 @@ For now, this library only allows the creation of the [TopUserBenefitsModel](htt
 First off, add the Gradle dependency to your app:
 
 ```groovy
-// TODO
+	dependencies {
+	        implementation 'com.github.mirshahbazi:Material-Onboarding:419ab7b69f'
+	}
 ```
 
 Next, add a manifest activity declaration, and set its theme. <b>NOTE: Make sure your theme's parent is `Sometheme.NoActionBar` otherwise your onboarding activity will have a toolbar.</b>
